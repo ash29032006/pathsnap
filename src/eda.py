@@ -196,7 +196,18 @@ def main():
 
     for part, tid in (("train", "00000034"), ("train", "00000098"), ("student_test", "00000056")):
         folium_map(part, tid, os.path.join(RES, "maps", f"eda_{part}_{tid}.html"))
-    print(pd.Series(summ).to_string())
+    print()
+    for part in ("train", "student_test"):
+        s = summ[part]
+        print(f"=== {part}")
+        print(f"  trips: {s['trips']}  |  total GPS points: {s['total_gps_points']:,}")
+        print(f"  missing values: {s['missing_values']}  |  invalid coords: {s['invalid_coords']}")
+        print(f"  sampling ~1s: {s['pct_dt_exactly_1s']*100:.1f}%  |  max gap: {s['max_gap_s']:.0f}s  |  trips with gaps >5s: {s['trips_with_gaps_over_5s']}")
+        print(f"  GPS-to-road median: {s['gps_to_road_median_m']:.1f}m  |  p95: {s['gps_to_road_p95_m']:.1f}m")
+        print(f"  mean two-way fraction: {s['mean_two_way_frac']:.2f}  |  routes fully connected: {s['reference_routes_fully_connected']}/{s['trips']}")
+        print()
+    print(f"anomalous trips: {summ['anomalous_trips']}")
+    print(f"\nplots -> results/eda/plots/   |   maps -> results/maps/eda_*.html")
 
 
 if __name__ == "__main__":

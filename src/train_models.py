@@ -74,7 +74,7 @@ def main():
     cv_df = load_partition("train", a.cv_step)
     fit_df = load_partition("train", a.fit_step)
     te_df = load_partition("student_test", 1)
-    print(f"cv rows={len(cv_df)} fit rows={len(fit_df)} test rows={len(te_df)} pos-rate={cv_df.y.mean():.3f}")
+    print(f"train rows={len(fit_df):,} trips=80 | student-test rows={len(te_df):,} trips=10")
     Xcv, ycv = xy(cv_df); groups = cv_df.trip.to_numpy()
     Xfit, yfit = xy(fit_df); Xte, yte = xy(te_df)
     gkf = GroupKFold(n_splits=5)
@@ -84,14 +84,14 @@ def main():
     specs = models()
     if a.only:
         specs = {k: v for k, v in specs.items() if k in a.only}
+    print(flush=True)
     for name, (family, cfg, make) in specs.items():
-        print(f"== {name}", flush=True)
+        print(f"=== {name} ({family})", flush=True)
         for k, (tr, va) in enumerate(gkf.split(Xcv, ycv, groups)):
             m = make(); t0 = time.time(); m.fit(Xcv[tr], ycv[tr]); ft = time.time() - t0
             p = m.predict_proba(Xcv[va])[:, 1]
             r = row_metrics(cv_df.iloc[va], p)
             fold_rows.append(dict(model=name, fold=k, fit_secs=ft, **r))
-            print(f"   fold {k}: top1={r['top1']:.4f} f1={r['macro_f1']:.4f} ll={r['log_loss']:.4f}", flush=True)
         f = pd.DataFrame([x for x in fold_rows if x["model"] == name])
 
         m = make(); t0 = time.time(); m.fit(Xfit, yfit); train_secs = time.time() - t0
@@ -119,14 +119,20 @@ def main():
             hmm_route_continuity=s["hmm_continuity"], hmm_route_f1=s["hmm_route_f1"],
             train_secs=train_secs, inference_ms_per_1k_rows=1000 * inf / len(Xte) * 1000,
         ))
-        print(pd.Series(comp_rows[-1]).to_string(), flush=True)
+        cv_f1 = f.macro_f1.mean(); cv_std = f.macro_f1.std()
+        print(f"  CV macroF1 {cv_f1:.4f}±{cv_std:.4f} | test top1 {te['top1']:.4f} "
+              f"F1 {te['macro_f1']:.4f} logloss {te['log_loss']:.4f} "
+              f"cont {s['clf_continuity']:.4f} | fit {train_secs:.1f}s", flush=True)
+        print(flush=True)
 
     pd.DataFrame(fold_rows).to_csv(os.path.join(RES, "cv_folds.csv"), index=False)
     comp = pd.DataFrame(comp_rows)
     comp.to_csv(os.path.join(RES, "model_comparison.csv"), index=False)
     save_json(hist, os.path.join(RES, "train_histories.json"))
-    print(comp[["model", "cv_macro_f1", "test_top1", "test_macro_f1", "test_log_loss", "hmm_top1",
-                "hmm_route_continuity", "inference_ms_per_1k_rows"]].round(4).to_string())
+    print("=" * 80)
+    print(comp[["model", "cv_macro_f1", "test_top1", "test_macro_f1", "test_log_loss",
+                "hmm_top1", "inference_ms_per_1k_rows"]].round(4).to_string(index=False))
+    print("=" * 80)
 
 
 if __name__ == "__main__":
