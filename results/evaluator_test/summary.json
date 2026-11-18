@@ -1,0 +1,16 @@
+{
+  "data": "/Users/ashwinharish/Desktop/ml/evaluator_test",
+  "n_trips": 10,
+  "n_points": 19674,
+  "top1_hmm": 0.9590322252719325,
+  "top1_classifier": 0.9083053776557894,
+  "continuity_hmm": 0.8658430908953717,
+  "continuity_classifier": 0.7732330256245021,
+  "route_f1": 0.9857614435706725,
+  "route_precision": 0.9771859068789487,
+  "route_recall": 0.9947808909530661,
+  "cand_top1": 0.9083515478066385,
+  "cand_macro_f1": 0.941706249363365,
+  "cand_log_loss": 0.07123089224769466,
+  "mean_inference_ms": 706.0399999999998
+}

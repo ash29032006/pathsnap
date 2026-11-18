@@ -24,7 +24,8 @@ pathsnap/
 │   ├── plots.py           # model comparison plots
 │   ├── tune.py            # Bayesian optimisation (Optuna TPE) of LightGBM + OOF probabilities
 │   ├── decode.py          # HMM parameter tuning, classifier vs HMM comparison, prediction maps
-│   └── route_eval.py      # per-trip route evaluation helpers
+│   ├── route_eval.py      # per-trip route evaluation helpers
+│   └── log_mlflow.py      # loads all results into MLflow for browsing
 ├── api/main.py            # FastAPI inference service
 ├── ui/                    # evaluator UI (static HTML/CSS/JS + Leaflet)
 ├── artifacts/             # final_model.joblib, hmm_config.json, model_config.json, all trained models
@@ -62,6 +63,33 @@ python src/decode.py --trials 25 # ~10 min HMM tuning, results/hmm_vs_classifier
 ```
 
 The Folium maps in `results/maps/` open in any browser.
+
+## Browse the experiments in MLflow
+
+`src/log_mlflow.py` loads every experiment above into a local MLflow store. It does not retrain anything; it reads the files in `results/` and `artifacts/`, so the numbers in MLflow are the same as in RESULTS.md.
+
+```bash
+python src/log_mlflow.py                                        # ~20 s, rebuilds mlflow.db + mlruns/
+mlflow ui --backend-store-uri sqlite:///mlflow.db --port 5002   # open http://localhost:5002
+```
+
+| Experiment | Runs |
+|---|---|
+| 1 - Model comparison | one run per classifier (8) with CV and student-test metrics, per-fold metrics, the MLP loss curve, confusion matrices and the trained model (all 8, about 540 MB in `mlruns/`) |
+| 2 - Bayesian tuning (LightGBM) | the Optuna search with its 40 trials as child runs, plus LightGBM untuned vs tuned. The tuned model is registered as `PathSnap-LightGBM` |
+| 3 - HMM decoding | the HMM parameter search with its 25 trials as child runs, plus nearest arc vs HMM distance-only vs classifier only vs classifier + HMM, and the Folium prediction maps |
+| 4 - Evaluator test | the final pipeline on the 10 evaluator trips: one summary run with one child run per trip, plus the Folium maps (written by `src/eval_evaluator.py`) |
+
+## Evaluate the evaluator_test folder
+
+Start the API on that folder, then run every trip through it. The script calls `POST /predict` for each trip, so the API terminal logs every request. It also computes candidate-level Macro F1 and log loss, writes the Folium maps and logs experiment 4 to MLflow.
+
+```bash
+PATHSNAP_EVAL_DIR="../evaluator_test" uvicorn api.main:app --host 0.0.0.0 --port 8000   # terminal 1
+python src/eval_evaluator.py --data ../evaluator_test --api http://localhost:8000      # terminal 2
+```
+
+Outputs: `results/evaluator_test/` (`per_trip.csv`, `summary.json`, `api_requests.log`, raw API responses) and `results/maps/pred_evaluator_test_*.html`.
 
 ## Deployment (two laptops)
 

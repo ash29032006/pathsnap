@@ -1,0 +1,33 @@
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+2026-11-18 15:36:00,289 | INFO | GET /trips from 127.0.0.1 -> 200 (10 ms)
+INFO:     127.0.0.1:56915 - "GET /trips HTTP/1.1" 200 OK
+2026-11-18 15:36:02,139 | INFO | PREDICT trip=00000015 points=6854 top1_hmm=0.9469 top1_clf=0.8226 route_f1=0.9512 continuity=0.9340 infer=1643ms
+2026-11-18 15:36:02,148 | INFO | POST /predict from 127.0.0.1 -> 200 (1796 ms)
+INFO:     127.0.0.1:56916 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:04,668 | INFO | PREDICT trip=00000017 points=1346 top1_hmm=0.9264 top1_clf=0.9302 route_f1=0.9754 continuity=0.7006 infer=966ms
+2026-11-18 15:36:04,675 | INFO | POST /predict from 127.0.0.1 -> 200 (1043 ms)
+INFO:     127.0.0.1:56917 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:06,551 | INFO | PREDICT trip=00000023 points=458 top1_hmm=0.9476 top1_clf=0.9454 route_f1=0.9813 continuity=0.8154 infer=146ms
+2026-11-18 15:36:06,552 | INFO | POST /predict from 127.0.0.1 -> 200 (156 ms)
+INFO:     127.0.0.1:56920 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:08,007 | INFO | PREDICT trip=00000030 points=654 top1_hmm=0.8731 top1_clf=0.8242 route_f1=0.9745 continuity=0.7652 infer=345ms
+2026-11-18 15:36:08,011 | INFO | POST /predict from 127.0.0.1 -> 200 (369 ms)
+INFO:     127.0.0.1:56921 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:10,096 | INFO | PREDICT trip=00000049 points=2642 top1_hmm=0.9958 top1_clf=0.9909 route_f1=0.9994 continuity=0.9618 infer=767ms
+2026-11-18 15:36:10,105 | INFO | POST /predict from 127.0.0.1 -> 200 (887 ms)
+INFO:     127.0.0.1:56922 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:12,539 | INFO | PREDICT trip=00000059 points=1031 top1_hmm=0.9767 top1_clf=0.9593 route_f1=0.9932 continuity=0.7938 infer=410ms
+2026-11-18 15:36:12,544 | INFO | POST /predict from 127.0.0.1 -> 200 (451 ms)
+INFO:     127.0.0.1:56923 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:14,158 | INFO | PREDICT trip=00000067 points=916 top1_hmm=0.9771 top1_clf=0.9716 route_f1=0.9974 continuity=0.8889 infer=261ms
+2026-11-18 15:36:14,161 | INFO | POST /predict from 127.0.0.1 -> 200 (281 ms)
+INFO:     127.0.0.1:56924 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:15,408 | INFO | PREDICT trip=00000073 points=1144 top1_hmm=0.9869 top1_clf=0.9851 route_f1=0.9983 continuity=0.9528 infer=663ms
+2026-11-18 15:36:15,414 | INFO | POST /predict from 127.0.0.1 -> 200 (698 ms)
+INFO:     127.0.0.1:56925 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:17,792 | INFO | PREDICT trip=00000087 points=1399 top1_hmm=0.9843 top1_clf=0.9535 route_f1=0.9942 continuity=0.9636 infer=905ms
+2026-11-18 15:36:17,800 | INFO | POST /predict from 127.0.0.1 -> 200 (964 ms)
+INFO:     127.0.0.1:56926 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:36:20,836 | INFO | PREDICT trip=00000094 points=3230 top1_hmm=0.9557 top1_clf=0.9443 route_f1=0.9927 continuity=0.8824 infer=953ms
+2026-11-18 15:36:20,847 | INFO | POST /predict from 127.0.0.1 -> 200 (1103 ms)
+INFO:     127.0.0.1:56927 - "POST /predict HTTP/1.1" 200 OK
