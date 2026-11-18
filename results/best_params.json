@@ -1,0 +1,17 @@
+{
+  "best_params": {
+    "n_estimators": 550,
+    "learning_rate": 0.013589996551555763,
+    "num_leaves": 209,
+    "min_child_samples": 60,
+    "subsample": 0.8732929789039275,
+    "colsample_bytree": 0.7577064597726236,
+    "reg_lambda": 0.3005092413909402,
+    "reg_alpha": 0.24279881963945874
+  },
+  "best_cv_top1": 0.8739095372218999,
+  "n_trials": 40,
+  "search_secs": 2783.133322954178,
+  "sampler": "TPE",
+  "objective": "mean 5-fold GroupKFold Top-1"
+}

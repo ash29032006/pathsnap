@@ -1,0 +1,32 @@
+{
+  "model": "LightGBM",
+  "params": {
+    "n_estimators": 550,
+    "learning_rate": 0.013589996551555763,
+    "num_leaves": 209,
+    "min_child_samples": 60,
+    "subsample": 0.8732929789039275,
+    "colsample_bytree": 0.7577064597726236,
+    "reg_lambda": 0.3005092413909402,
+    "reg_alpha": 0.24279881963945874
+  },
+  "features": [
+    "dist",
+    "dist_rank",
+    "dist_minus_min",
+    "dist_ratio",
+    "heading_diff",
+    "stationary",
+    "speed",
+    "arc_len",
+    "frac",
+    "ctx3_dist",
+    "ctx10_dist",
+    "ctx3_head",
+    "n_cand",
+    "out_deg",
+    "is_rev_of_nearest"
+  ],
+  "cand_radius": 60.0,
+  "cand_max_k": 10
+}

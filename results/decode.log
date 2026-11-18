@@ -1,0 +1,42 @@
+hmm trial 0: beta=5.00 w=1.00 top1=0.8481 routeF1=0.9530
+hmm trial 1: beta=2.81 w=2.54 top1=0.8461 routeF1=0.9529
+hmm trial 2: beta=14.55 w=0.77 top1=0.8452 routeF1=0.9508
+hmm trial 3: beta=1.03 w=0.17 top1=0.8278 routeF1=0.9490
+hmm trial 4: beta=0.65 w=1.90 top1=0.8540 routeF1=0.9446
+hmm trial 5: beta=7.97 w=1.11 top1=0.8453 routeF1=0.9514
+hmm trial 6: beta=0.55 w=2.71 top1=0.8536 routeF1=0.9345
+hmm trial 7: beta=23.11 w=0.21 top1=0.8510 routeF1=0.9565
+hmm trial 8: beta=1.16 w=0.19 top1=0.8383 routeF1=0.9503
+hmm trial 9: beta=2.03 w=0.60 top1=0.8596 routeF1=0.9528
+hmm trial 10: beta=2.10 w=0.38 top1=0.8595 routeF1=0.9538
+hmm trial 11: beta=1.89 w=0.50 top1=0.8612 routeF1=0.9531
+hmm trial 12: beta=0.54 w=0.37 top1=0.8236 routeF1=0.9123
+hmm trial 13: beta=1.42 w=0.69 top1=0.8582 routeF1=0.9534
+hmm trial 14: beta=6.22 w=0.39 top1=0.8575 routeF1=0.9552
+hmm trial 15: beta=4.88 w=0.21 top1=0.8639 routeF1=0.9573
+hmm trial 16: beta=8.41 w=0.17 top1=0.8635 routeF1=0.9574
+hmm trial 17: beta=4.27 w=0.13 top1=0.8642 routeF1=0.9562
+hmm trial 18: beta=1.27 w=0.11 top1=0.8202 routeF1=0.9484
+hmm trial 19: beta=3.18 w=0.12 top1=0.8569 routeF1=0.9558
+hmm trial 20: beta=2.09 w=0.23 top1=0.8531 routeF1=0.9521
+hmm trial 21: beta=14.32 w=0.14 top1=0.8644 routeF1=0.9578
+hmm trial 22: beta=33.27 w=0.14 top1=0.8497 routeF1=0.9566
+hmm trial 23: beta=10.55 w=0.30 top1=0.8571 routeF1=0.9568
+hmm trial 24: beta=5.42 w=0.21 top1=0.8644 routeF1=0.9576
+best decoder config: HMMConfig(beta=5.42007522615017, emis_w=0.20703346466675987, break_logp=-30.0, max_speed=50.0)
+                                method    top1  continuity  route_f1
+0  Nearest arc (distance only, no HMM)  0.5417      0.4273    0.6081
+1     HMM with distance-only emissions  0.9235      0.9083    0.9873
+2     Classifier only (LightGBM tuned)  0.9020      0.7725    0.8377
+3             Classifier + HMM/Viterbi  0.9445      0.9124    0.9892
+       trip  n_points  clf_top1  hmm_top1  clf_continuity  hmm_continuity  hmm_route_f1  hmm_breaks
+0  00000000      2503    0.9549    0.9808          0.7391          0.9526        0.9969           0
+1  00000007      1354    0.9749    1.0000          0.9758          1.0000        0.9965           0
+2  00000009      1049    0.8875    0.9037          0.7590          0.8460        0.9658           0
+3  00000040      2995    0.9366    0.9796          0.7618          0.9644        0.9996           0
+4  00000052       262    0.9847    1.0000          0.8293          0.8902        0.9984           0
+5  00000056      3958    0.9189    0.9621          0.7513          0.8931        0.9801           0
+6  00000065       768    0.8646    0.8685          0.7725          0.9130        0.9911           0
+7  00000076      1486    0.9347    0.9785          0.6995          0.8717        0.9814           0
+8  00000077      3911    0.7911    0.8650          0.7513          0.9235        0.9883           0
+9  00000091       874    0.9085    0.9519          0.6857          0.8696        0.9943           0

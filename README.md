@@ -44,6 +44,8 @@ source .venv/bin/activate            # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+If conda is installed, run `conda deactivate` before creating the venv. Otherwise the venv can end up linked to conda's Python and fail with `failed to parse CPython sys.version`. To fix it, delete `.venv` and recreate it from a python.org or Homebrew Python.
+
 The data folder is expected at `../Student folder` (with `train/` and `student_test/` inside). To use a different location, set `PATHSNAP_DATA=/path/to/Student folder`.
 
 ## Reproduce the experiments

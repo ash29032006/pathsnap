@@ -36,7 +36,8 @@ def main():
                          trips_gap_gt5s=e["trips_with_gaps_over_5s"], max_gap_s=e["max_gap_s"],
                          gps_to_road_median_m=round(e["gps_to_road_median_m"], 2),
                          gps_to_road_p95_m=round(e["gps_to_road_p95_m"], 2),
-                         candidate_miss_rate=round(1 - (1 - c.candidate_miss_rate).mul(c.n_points).sum() / c.n_points.sum(), 4)))
+                         miss_rate_point_weighted=round(c.candidate_miss_rate.mul(c.n_points).sum() / c.n_points.sum(), 4),
+                         miss_rate_trip_mean=round(c.candidate_miss_rate.mean(), 4)))
     out += [md(pd.DataFrame(rows)), "",
             "Plots: `results/eda/plots/`. Folium maps: `results/maps/eda_*.html`. Per-trip inventory: `results/eda/inventory.csv`.", ""]
 
